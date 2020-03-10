@@ -1,0 +1,24 @@
+{
+  "useConfigFiles": false,
+  "cssPreprocessor": "stylus",
+  "plugins": {
+    "@vue/cli-plugin-babel": {},
+    "vue-cli-plugin-tailwind": {}
+  },
+  "configs": {
+    "babel": {
+      "plugins": ["macros"]
+    },
+    "postcss": {
+      "plugins": {
+        "vue-cli-plugin-tailwind/purgecss": {
+          "whitelist": [],
+          "whitelistPatternsChildren": [],
+          "content": [
+            "src/**/*.vue"
+          ]
+        }
+      }
+    }
+  }
+}
