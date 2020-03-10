@@ -45,6 +45,7 @@ export default
 
 const mainCoffee = `\
 import { it } from 'param.macro'
+import './global_extensions'
 import Vue from 'vue'
 import App from './App.vue'
 import './assets/tailwind.css'
@@ -54,6 +55,10 @@ Vue.config.productionTip = false
 new Vue(render: (h) -> h(App)).$mount('#app')
 `
 
+const globals = `\
+Object.assign global,
+  log: console.log.bind(console)
+`
 
 module.exports = (api) => {
   api.onCreateComplete(() => {
@@ -66,6 +71,7 @@ module.exports = (api) => {
     fs.writeFileSync(api.resolve('src', 'App.vue'), appVue);
     fs.writeFileSync(api.resolve('src', 'main.coffee'), mainCoffee);
     fs.writeFileSync(api.resolve('src', 'README.md'), '');
+    fs.writeFileSync(api.resolve('src', 'global_extensions.coffee'), globals);
   })
 
   api.extendPackage({
